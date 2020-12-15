@@ -85,7 +85,7 @@ Car.prototype.drive = function (distance) {
     distance > maximumPossibleDistance ? distance - maximumPossibleDistance : 0;
   if (fuelRunOutDistance) {
     this.odometer += maximumPossibleDistance;
-    this.tank -= maximumPossibleDistance / this.milesPerGallon;
+    if (this.tank) this.tank -= maximumPossibleDistance / this.milesPerGallon;
     return `I ran out of fuel at ${this.odometer} miles!`;
   } else {
     this.odometer += distance;
@@ -98,6 +98,7 @@ maruti.fill(20);
 console.log(maruti.drive(300));
 maruti.fill(10);
 console.log(maruti.drive(300));
+console.log(maruti.drive(100));
 
 /*
     TASK 3
